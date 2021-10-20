@@ -27,7 +27,7 @@
                 <configuration>
                     <cloudHubDeployment>
                         <uri>https://anypoint.mulesoft.com</uri>
-                        <muleVersion>4.2.2</muleVersion>
+                        <muleVersion>4.3.0</muleVersion>
                         <username>kuppaNagaraj</username>
                         <password>egtpm7648h@Nkm</password>
                         <applicationName>pl-accountdetails-api</applicationName>

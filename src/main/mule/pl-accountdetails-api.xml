@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="73a5ad8e-50e8-4efe-884e-3500c185ea7e" >
+		<http:listener-connection host="${http.host}" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="2f3e2e8a-c5f3-451b-8163-2513e3a07c94" file="config.yaml" />
+	<flow name="pl-accountdetails-apiFlow" doc:id="192a6254-cfac-4b9b-a293-697824bea0d7" >
+		<http:listener doc:name="Listener" doc:id="3a149017-d0fd-40e4-8c1a-727c6e7c0f82" config-ref="HTTP_Listener_config" path="/accountDetail"/>
+		<logger level="INFO" doc:name="Logger" doc:id="8a850a0f-ba7e-496d-a68d-c8807dc9c3f3" message='#["Log Start Application"]'/>
+		<ee:transform doc:name="Transform Message" doc:id="1705a8ff-5cd4-4f6e-a3a5-9c3e8e13f35f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"AccountDetail":{
+		"Name": payload.accountName,
+		"AccountNumber": payload.accountNumber
+	}
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="75f65416-98a9-477e-a6b1-fc4caee17bf3" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="6a363d76-cde3-4644-8597-df6c3313f0d9" message='#["Log End Application"]'/>
+	</flow>
+</mule>

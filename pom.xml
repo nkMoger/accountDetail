@@ -33,10 +33,10 @@
                     <cloudHubDeployment>
                         <uri>https://anypoint.mulesoft.com</uri>
                         <muleVersion>4.3.0</muleVersion>
-                        <username>kuppaNagaraj</username>
-                        <password>egtpm7648h@Nkm</password>
+                        <username>${username}</username>
+                        <password>${password}</password>
                         <applicationName>pl-accountdetails-api</applicationName>
-                        <environment>Sandbox</environment>
+                        <environment>${environment}</environment>
                         <workers>1</workers>
                         <workerType>MICRO</workerType>
                         <objectStoreV2>true</objectStoreV2>

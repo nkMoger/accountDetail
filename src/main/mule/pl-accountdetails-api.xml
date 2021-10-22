@@ -21,7 +21,8 @@ output application/json
 	"AccountDetail":{
 		"Name": payload.accountName,
 		"AccountNumber": payload.accountNumber,
-		"AccountType": "Customer"
+		"AccountType": "Customer",
+		"AccountBalance": "*********"
 	}
 }]]></ee:set-payload>
 			</ee:message>
